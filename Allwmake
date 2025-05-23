@@ -1,0 +1,58 @@
+#!/bin/bash
+cd "${0%/*}" || exit  # Run from this directory
+
+# Stop at first error
+set -e
+
+# Check if OpenFOAM/FOAM has been sourced
+if [[ -z "${WM_PROJECT}" ]]
+then
+    echo "Please source the OpenFOAM/FOAM bashrc first!"
+    exit 1
+else
+    allowed_ver=("4.1" "9" "v2012" "v2106" "v2112" "v2206" "v2212" "v2306" "v2312")
+    if ! [[ " ${allowed_ver[*]} " == *" $WM_PROJECT_VERSION "* ]]; then
+        echo "Unsupported OpenFOAM version sourced!"
+    fi
+fi
+
+# Download ThirdParty software
+(cd ThirdParty && ./Allwmake $* 2>&1 | tee log.Allwmake)
+
+# Some files in foam-extend may need to be fixed
+(cd optionalFixes && ./Allcheck 2>&1 | tee log.Allcheck)
+N_FIXES=$(grep "PLEASE FIX THIS" optionalFixes/log.Allcheck | wc -l)
+if [[ $N_FIXES -gt 0 ]]
+then
+    echo "** ERROR with optionalFixes **"
+    echo "Please make the file replacements described above, or skip these "
+    echo "checks by setting 'export S4F_NO_FILE_FIXES=1'"; echo
+    exit 1
+fi
+
+# Compile libraries
+(cd src && ./Allwmake $* 2>&1 | tee log.Allwmake)
+
+# Compile applications
+(cd applications && ./Allwmake $* 2>&1 | tee log.Allwmake)
+
+# Check if the build succeeded
+echo "Checking if the installation was a success:"
+N_ERRORS_1=$(find . -name log.Allwmake | xargs grep "\ Error\ " | wc -l)
+N_ERRORS_2=$(find . -name log.Allwmake | xargs grep "\ Stop." | wc -l)
+if [[ $N_ERRORS_1 -gt 0 ]] || [[ $N_ERRORS_2 -gt 0 ]]
+then
+    echo "** BUILD ERROR **"
+    echo "There were build errors in the following logs:"
+    echo $(find . -name log.Allwmake | xargs grep -l "\ Error\ ")
+    echo $(find . -name log.Allwmake | xargs grep -l "\ Stop.")
+    echo; echo "Please examine these logs for additional details"; echo
+    exit 1
+else
+    echo "There were no build errors: enjoy solids4foam!"; echo
+    echo "To test the installation, run:"
+    echo "    > cd tutorials && ./Alltest"
+fi
+echo
+
+#------------------------------------------------------------------------------

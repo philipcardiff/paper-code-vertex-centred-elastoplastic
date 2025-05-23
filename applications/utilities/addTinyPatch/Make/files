@@ -1,0 +1,3 @@
+addTinyPatch.C
+
+EXE = $(FOAM_MODULE_APPBIN)/addTinyPatch

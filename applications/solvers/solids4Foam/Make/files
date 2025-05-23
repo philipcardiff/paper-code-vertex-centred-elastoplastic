@@ -1,0 +1,3 @@
+solids4Foam.C
+
+EXE = $(FOAM_MODULE_APPBIN)/solids4Foam
