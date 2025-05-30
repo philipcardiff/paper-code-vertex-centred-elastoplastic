@@ -28,10 +28,6 @@ ddtSchemes
 
 gradSchemes
 {
-    //default            extendedLeastSquares 0;
-
-    // OpenFOAM.org must use pointCellsLeastSquares or edgeCellsLeastSquares as
-    // they are the only schemes to correctly use the boundary delta vectors
     default            pointCellsLeastSquares;
 }
 
