@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| solids4foam: solid mechanics and fluid-solid interaction simulations        |
+| Version:     v2.0                                                           |
+| Web:         https://solids4foam.github.io                                  |
+| Disclaimer:  This offering is not approved or endorsed by OpenCFD Limited,  |
+|              producer and distributor of the OpenFOAM software via          |
+|              www.openfoam.com, and owner of the OPENFOAM® and OpenCFD®      |
+|              trade marks.                                                   |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      solidProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solidModel     vertexCentredSegregatedLinearGeometry;
+
+vertexCentredSegregatedLinearGeometryCoeffs
+{
+    // Maximum number of Newton-Raphson iterations
+    // Set to 1 for linear cases, otherwise the solver may perform a second
+    // iteration
+    nCorrectors     300;
+
+    // Compact edge discretisation fraction
+    zeta            0.0;
+
+    // Tolerance for Newton-Raphson loop
+    // This obviouosly has no effect if nCorrectors is set to 1
+    solutionTolerance 1e-6;
+
+    // Write Eigen matrix to disk in Matlab format
+    writeMatlabMatrix no;
+
+    // Scaling of fixed DOF equations
+    //fixedDofScale 1;
+
+    // Fraction of compact edge direction gradient used
+    // Must be greater than 0.0 for stability
+    // alpha 0.2;
+}
+
+
+// ************************************************************************* //
