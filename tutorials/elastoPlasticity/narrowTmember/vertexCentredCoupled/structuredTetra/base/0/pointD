@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM Extend Project: Open Source CFD        |
+|  \\    /   O peration     | Version:  1.6-ext                               |
+|   \\  /    A nd           | Web:      www.extend-project.de                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       pointVectorField;
+    location    "0";
+    object      pointD;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    loading
+    {
+        type            pointSolidTraction;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform -1e6;
+        value           uniform (0 0 0);
+    }
+
+    tractionFree
+    {
+        type            pointSolidTraction;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+    }
+
+    defaultFaces
+    {
+        type            pointSolidTraction;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+    }
+
+    front
+    {
+        type            pointSolidTraction;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+    }
+
+    fixed
+    {
+        type            uniformFixedValue;
+        uniformValue    ( 0 0 0 );
+    }
+
+    symmx
+    {
+        type            pointFixedDisplacementZeroShear;
+        value           uniform ( 0 0 0 );
+        refValue        uniform ( 0 0 0 );
+    }
+
+    symmz
+    {
+        type            pointFixedDisplacementZeroShear;
+        value           uniform ( 0 0 0 );
+        refValue        uniform ( 0 0 0 );
+    }
+}
+
+// ************************************************************************* //

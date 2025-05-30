@@ -371,27 +371,28 @@ bool Foam::MMSCubeAnalyticalSolution::writeData()
             (
                 "pointDDifference", analyticalPointD - pointD
             );
-            Info<< "Writing pointDDifference field" << endl;
+            Info<< "Writing pointDDifference field" 
+		<< nl << endl;
             diff.write();
 
-            const vectorField& diffI = diff;
-            Info<< "    Displacement norms: mean L1, mean L2, LInf: " << nl
-                << "	Magnitude: " << gAverage(mag(diffI))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI)))
-                << " " << gMax(mag(diffI))
-                << nl
-                << "	u: " << gAverage(mag(diffI.component(0)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(0))))
-                << " " << gMax(mag(diffI.component(0)))
-                << nl
-                << "	v: " << gAverage(mag(diffI.component(1)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(1))))
-                << " " << gMax(mag(diffI.component(1)))
-                << nl
-                << "	w: " << gAverage(mag(diffI.component(2)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(2))))
-                << " " << gMax(mag(diffI.component(2)))
-                << nl << endl;
+            // const vectorField& diffI = diff;
+            // Info<< "    Displacement norms: mean L1, mean L2, LInf: " << nl
+            //     << "	Magnitude: " << gAverage(mag(diffI))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI)))
+            //     << " " << gMax(mag(diffI))
+            //     << nl
+            //     << "	u: " << gAverage(mag(diffI.component(0)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(0))))
+            //     << " " << gMax(mag(diffI.component(0)))
+            //     << nl
+            //     << "	v: " << gAverage(mag(diffI.component(1)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(1))))
+            //     << " " << gMax(mag(diffI.component(1)))
+            //     << nl
+            //     << "	w: " << gAverage(mag(diffI.component(2)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(2))))
+            //     << " " << gMax(mag(diffI.component(2)))
+            //     << nl << endl;
         }
 
         if
@@ -407,27 +408,28 @@ bool Foam::MMSCubeAnalyticalSolution::writeData()
             (
                 "DDifference", analyticalD - D
             );
-            Info<< "Writing DDifference field" << endl;
+            Info<< "Writing DDifference field" 
+		<< nl << endl;
             diff.write();
 
-            const vectorField& diffI = diff;
-            Info<< "    Displacement norms: mean L1, mean L2, LInf: " << nl
-                << "	Magnitude: " << gAverage(mag(diffI))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI)))
-                << " " << gMax(mag(diffI))
-                << nl
-                << "	u: " << gAverage(mag(diffI.component(0)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(0))))
-                << " " << gMax(mag(diffI.component(0)))
-                << nl
-                << "	v: " << gAverage(mag(diffI.component(1)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(1))))
-                << " " << gMax(mag(diffI.component(1)))
-                << nl
-                << "	w: " << gAverage(mag(diffI.component(2)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffI.component(2))))
-                << " " << gMax(mag(diffI.component(2)))
-                << nl << endl;
+            // const vectorField& diffI = diff;
+            //  Info<< "    Displacement norms: mean L1, mean L2, LInf: " << nl
+            //     << "	Magnitude: " << gAverage(mag(diffI))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI)))
+            //     << " " << gMax(mag(diffI))
+            //     << nl
+            //     << "	u: " << gAverage(mag(diffI.component(0)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(0))))
+            //     << " " << gMax(mag(diffI.component(0)))
+            //     << nl
+            //     << "	v: " << gAverage(mag(diffI.component(1)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(1))))
+            //     << " " << gMax(mag(diffI.component(1)))
+            //     << nl
+            //     << "	w: " << gAverage(mag(diffI.component(2)))
+            //     << " " << Foam::sqrt(gAverage(magSqr(diffI.component(2))))
+            //     << " " << gMax(mag(diffI.component(2)))
+            //     << nl << endl;
         }
 
         if
@@ -443,35 +445,36 @@ bool Foam::MMSCubeAnalyticalSolution::writeData()
             (
                 "pointEpsilonDifference", analyticalPointEpsilon - pointEpsilon
             );
-            Info<< "Writing pointPointEpsilonDifference field" << endl;
+            Info<< "Writing pointPointEpsilonDifference field" 
+		<< nl << endl;
             diffEpsilon.write();
 
-            const symmTensorField& diffEpsilonI = diffEpsilon;
-            Info<< "    pEpsilon norms: mean L1, mean L2, LInf: " << nl
-                << "    Component XX: " << gAverage(mag(diffEpsilonI.component(0)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(0))))
-                << " " << gMax(mag(diffEpsilonI.component(0)))
-                << nl
-                << "    Component XY: " << gAverage(mag(diffEpsilonI.component(1)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(1))))
-                << " " << gMax(mag(diffEpsilonI.component(1)))
-                << nl
-                << "    Component XZ: " << gAverage(mag(diffEpsilonI.component(2)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(2))))
-                << " " << gMax(mag(diffEpsilonI.component(2)))
-                << nl
-                << "    Component YY: " << gAverage(mag(diffEpsilonI.component(3)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(3))))
-                << " " << gMax(mag(diffEpsilonI.component(3)))
-                << nl
-                << "    Component YZ: " << gAverage(mag(diffEpsilonI.component(4)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(4))))
-                << " " << gMax(mag(diffEpsilonI.component(4)))
-                << nl
-                << "    Component ZZ: " << gAverage(mag(diffEpsilonI.component(5)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(5))))
-                << " " << gMax(mag(diffEpsilonI.component(5)))
-                << nl << endl;
+            // const symmTensorField& diffEpsilonI = diffEpsilon;
+            // Info<< "    pEpsilon norms: mean L1, mean L2, LInf: " << nl
+            //    << "    Component XX: " << gAverage(mag(diffEpsilonI.component(0)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(0))))
+            //    << " " << gMax(mag(diffEpsilonI.component(0)))
+            //    << nl
+            //    << "    Component XY: " << gAverage(mag(diffEpsilonI.component(1)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(1))))
+            //    << " " << gMax(mag(diffEpsilonI.component(1)))
+            //    << nl
+            //    << "    Component XZ: " << gAverage(mag(diffEpsilonI.component(2)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(2))))
+            //    << " " << gMax(mag(diffEpsilonI.component(2)))
+            //    << nl
+            //    << "    Component YY: " << gAverage(mag(diffEpsilonI.component(3)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(3))))
+            //    << " " << gMax(mag(diffEpsilonI.component(3)))
+            //    << nl
+            //    << "    Component YZ: " << gAverage(mag(diffEpsilonI.component(4)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(4))))
+            //    << " " << gMax(mag(diffEpsilonI.component(4)))
+            //    << nl
+            //    << "    Component ZZ: " << gAverage(mag(diffEpsilonI.component(5)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffEpsilonI.component(5))))
+            //    << " " << gMax(mag(diffEpsilonI.component(5)))
+            //    << nl << endl;
         }
 
 
@@ -506,41 +509,38 @@ bool Foam::MMSCubeAnalyticalSolution::writeData()
 //                "pointSigmaEqDifference", analyticalStressEq - pointSigmaEq
 //            );
 
-            Info<< "Writing pointSigmaDifference and pointSigmaEqDifference fields" << endl;
+            Info<< "Writing pointSigmaDifference and pointSigmaEqDifference fields" 
+		<< nl << endl;
             diffSigma.write();
             //diffSigmaEq.write();
 
-            const symmTensorField& diffSigmaI = diffSigma;
-            //const scalarField& diffSigmaEqI = diffSigmaEq;
-            Info<< "    Sigma norms: mean L1, mean L2, LInf: " << nl
-                << "    Component XX: " << gAverage(mag(diffSigmaI.component(0)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(0))))
-                << " " << gMax(mag(diffSigmaI.component(0)))
-                << nl
-                << "    Component XY: " << gAverage(mag(diffSigmaI.component(1)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(1))))
-                << " " << gMax(mag(diffSigmaI.component(1)))
-                << nl
-                << "    Component XZ: " << gAverage(mag(diffSigmaI.component(2)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(2))))
-                << " " << gMax(mag(diffSigmaI.component(2)))
-                << nl
-                << "    Component YY: " << gAverage(mag(diffSigmaI.component(3)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(3))))
-                << " " << gMax(mag(diffSigmaI.component(3)))
-                << nl
-                << "    Component YZ: " << gAverage(mag(diffSigmaI.component(4)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(4))))
-                << " " << gMax(mag(diffSigmaI.component(4)))
-                << nl
-                << "    Component ZZ: " << gAverage(mag(diffSigmaI.component(5)))
-                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(5))))
-                << " " << gMax(mag(diffSigmaI.component(5)))
-                << nl << endl;
-//                << "    SigmaEq: " << gAverage(mag(diffSigmaEqI))
-//                << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI)))
-//                << " " << gMax(mag(diffSigmaI))
-//                << nl << endl;
+            // const symmTensorField& diffSigmaI = diffSigma;
+            // const scalarField& diffSigmaEqI = diffSigmaEq;
+            // Info<< "    Sigma norms: mean L1, mean L2, LInf: " << nl
+            //    << "    Component XX: " << gAverage(mag(diffSigmaI.component(0)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(0))))
+            //    << " " << gMax(mag(diffSigmaI.component(0)))
+            //    << nl
+            //    << "    Component XY: " << gAverage(mag(diffSigmaI.component(1)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(1))))
+            //    << " " << gMax(mag(diffSigmaI.component(1)))
+            //    << nl
+            //    << "    Component XZ: " << gAverage(mag(diffSigmaI.component(2)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(2))))
+            //    << " " << gMax(mag(diffSigmaI.component(2)))
+            //    << nl
+            //    << "    Component YY: " << gAverage(mag(diffSigmaI.component(3)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(3))))
+            //    << " " << gMax(mag(diffSigmaI.component(3)))
+            //    << nl
+            //    << "    Component YZ: " << gAverage(mag(diffSigmaI.component(4)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(4))))
+            //    << " " << gMax(mag(diffSigmaI.component(4)))
+            //    << nl
+            //    << "    Component ZZ: " << gAverage(mag(diffSigmaI.component(5)))
+            //    << " " << Foam::sqrt(gAverage(magSqr(diffSigmaI.component(5))))
+            //    << " " << gMax(mag(diffSigmaI.component(5)))
+            //    << nl << endl;
         }
     }
 
